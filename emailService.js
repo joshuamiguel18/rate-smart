@@ -10,8 +10,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
-
 const sendVerificationEmail = async (email, code) => {
   console.log("💌 THE EMAIL IS:", email);
   console.log("📮 SENDING VERIFICATION CODE:", code);
@@ -42,5 +40,16 @@ const sendVerificationEmail = async (email, code) => {
     `,
   };
 
-  
-  module.exports = sendVerificationEmail;
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("✅ Email sent successfully:", info.response);
+  } catch (error) {
+    console.error("❌ Failed to send email:");
+    console.error("Error name:", error.name);
+    console.error("Error code:", error.code);
+    console.error("Error message:", error.message);
+    console.error("Full error object:", error);
+  }
+};
+
+module.exports = sendVerificationEmail;
