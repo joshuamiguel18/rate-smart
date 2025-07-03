@@ -10,47 +10,47 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendVerificationEmail = async (email, code) => {
-  console.log("💌 THE EMAIL IS:", email);
-  console.log("📮 SENDING VERIFICATION CODE:", code);
+// const sendVerificationEmail = async (email, code) => {
+//   console.log("💌 THE EMAIL IS:", email);
+//   console.log("📮 SENDING VERIFICATION CODE:", code);
 
-  const mailOptions = {
-    from: "pettranspo.service.tech@gmail.com",
-    to: email,
-    subject: "Your Verification Code - PetTranspo",
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
-        <h2 style="color: #333; text-align: center;">Verify Your Email</h2>
-        <p style="color: #555; font-size: 16px;">Use the verification code below to complete your sign-up process:</p>
+//   const mailOptions = {
+//     from: "pettranspo.service.tech@gmail.com",
+//     to: email,
+//     subject: "Your Verification Code - PetTranspo",
+//     html: `
+//       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+//         <h2 style="color: #333; text-align: center;">Verify Your Email</h2>
+//         <p style="color: #555; font-size: 16px;">Use the verification code below to complete your sign-up process:</p>
         
-        <div style="text-align: center; margin: 20px 0;">
-          <div style="display: inline-block; background-color: #007bff; color: #fff; padding: 12px 20px; font-size: 24px; border-radius: 5px; letter-spacing: 2px;">
-            ${code}
-          </div>
-        </div>
+//         <div style="text-align: center; margin: 20px 0;">
+//           <div style="display: inline-block; background-color: #007bff; color: #fff; padding: 12px 20px; font-size: 24px; border-radius: 5px; letter-spacing: 2px;">
+//             ${code}
+//           </div>
+//         </div>
 
-        <p style="color: #555; font-size: 14px;">If you did not sign up for a PetTranspo account, you can safely ignore this email.</p>
+//         <p style="color: #555; font-size: 14px;">If you did not sign up for a PetTranspo account, you can safely ignore this email.</p>
 
-        <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+//         <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
 
-        <p style="color: #777; font-size: 12px; text-align: center;">
-          Need help? Contact our support team at <a href="mailto:pettranspo.service.tech@gmail.com">pettranspo.service.tech@gmail.com</a>.
-        </p>
-      </div>
-    `,
-  };
+//         <p style="color: #777; font-size: 12px; text-align: center;">
+//           Need help? Contact our support team at <a href="mailto:pettranspo.service.tech@gmail.com">pettranspo.service.tech@gmail.com</a>.
+//         </p>
+//       </div>
+//     `,
+//   };
 
-  try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log("✅ Email sent successfully:", info.response);
-  } catch (error) {
-    console.error("❌ Failed to send email:");
-    console.error("Error name:", error.name);
-    console.error("Error code:", error.code);
-    console.error("Error message:", error.message);
-    console.error("Full error object:", error);
-  }
-};
+//   try {
+//     const info = await transporter.sendMail(mailOptions);
+//     console.log("✅ Email sent successfully:", info.response);
+//   } catch (error) {
+//     console.error("❌ Failed to send email:");
+//     console.error("Error name:", error.name);
+//     console.error("Error code:", error.code);
+//     console.error("Error message:", error.message);
+//     console.error("Full error object:", error);
+//   }
+// };
 
 
 const sendHtmlEmail = async (to, subject, html) => {
