@@ -72,4 +72,4 @@ const sendHtmlEmail = async (to, subject, html) => {
 };
 
 
-module.exports = sendVerificationEmail;
+module.exports = sendHtmlEmail;
