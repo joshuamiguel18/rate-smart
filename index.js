@@ -5,7 +5,7 @@ const pool = require('./db')
 const app = express();
 const multer = require("multer");
 const crypto = require("crypto");
-const sendVerificationEmail = require("./emailService");
+//const sendVerificationEmail = require("./emailService");
 const sendHtmlEmail = require("./emailService");
 
 app.use(express.static(path.join(__dirname + '/public')));
@@ -375,17 +375,17 @@ app.post("/send-email", async (req, res) => {
 
 
 
-app.post("/send-otp/:email/:otp", async (req, res) => {
-  const { email, otp } = req.params;
+// app.post("/send-otp/:email/:otp", async (req, res) => {
+//   const { email, otp } = req.params;
 
-  try {
-    await sendVerificationEmail(email, otp);
-    res.status(200).json({ success: true, message: "OTP sent successfully" });
-  } catch (error) {
-    console.error("❌ Error sending OTP:", error);
-    res.status(500).json({ success: false, message: "Failed to send OTP", error: error.message });
-  }
-});
+//   try {
+//     await sendVerificationEmail(email, otp);
+//     res.status(200).json({ success: true, message: "OTP sent successfully" });
+//   } catch (error) {
+//     console.error("❌ Error sending OTP:", error);
+//     res.status(500).json({ success: false, message: "Failed to send OTP", error: error.message });
+//   }
+// });
 
 
 app.post("/form/edit/:id", async (req, res) => {
