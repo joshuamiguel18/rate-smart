@@ -52,4 +52,24 @@ const sendVerificationEmail = async (email, code) => {
   }
 };
 
+
+const sendHtmlEmail = async (to, subject, html) => {
+  const mailOptions = {
+    from: `"CA Reservation" <${process.env.SMTP_USER}>`,
+    to,
+    subject,
+    html,
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("✅ Email sent:", info.response);
+    return true;
+  } catch (error) {
+    console.error("❌ Email send failed:", error);
+    throw error;
+  }
+};
+
+
 module.exports = sendVerificationEmail;
