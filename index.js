@@ -6,7 +6,7 @@ const app = express();
 const multer = require("multer");
 const crypto = require("crypto");
 const sendVerificationEmail = require("./emailService");
-
+const sendHtmlEmail = require("./emailService");
 
 app.use(express.static(path.join(__dirname + '/public')));
 
@@ -356,6 +356,24 @@ app.get("/form/answer/:id", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+
+app.post("/send-email", async (req, res) => {
+  const { to, subject, html } = req.body;
+
+  if (!to || !subject || !html) {
+    return res.status(400).send("Missing fields: to, subject, or html");
+  }
+
+  try {
+    await sendHtmlEmail(to, subject, html);
+    res.status(200).send("Email sent successfully");
+  } catch (err) {
+    res.status(500).send("Failed to send email");
+  }
+});
+
+
 
 app.post("/send-otp/:email/:otp", async (req, res) => {
   const { email, otp } = req.params;
