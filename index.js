@@ -894,7 +894,7 @@ app.post("/register", upload.single("verification"), async (req, res) => {
         );
 
         // Send verification email
-        await sendVerificationEmail(email, verificationToken);
+        //await sendVerificationEmail(email, verificationToken);
         res.render('emailSent', { email: email})
         //res.json({ message: "Registration successful! Please check your email for verification." });
     } catch (err) {
